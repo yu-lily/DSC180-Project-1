@@ -7,7 +7,7 @@ import json
 sys.path.insert(0, 'src')
 
 import utils
-from scrape import scrape_video
+from scrape import scrape_video, scrape_ytdriver
 #from model import model
 
 def main(targets):
@@ -38,9 +38,14 @@ def main(targets):
         with open('config/data-params.json') as fh:
             data_cfg = json.load(fh)
             
-        print(data)
         utils.json_to_csv(data, **data_cfg)
 
+    if 'scrape_many' in targets:
+        with open('config/scrape-many-params.json') as fh:
+            scrape_cfg = json.load(fh)
+            
+        data = scrape_ytdriver(**scrape_cfg)
+        
     return
 
 if __name__ == '__main__':

@@ -2,6 +2,8 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 import time
+from YTDriver import YTDriver
+from utils import list_to_csv
 def scrape_video(url):
     """
 
@@ -27,3 +29,26 @@ def scrape_video(url):
     print(out)
     driver.close()
     return out
+
+def scrape_ytdriver(filepath, recursions=5):
+    driver = YTDriver(browser='firefox', verbose=True)
+
+    videos = []
+    cur_videos = driver.get_homepage()
+    if not cur_videos:
+        cur_videos = driver.get_homepage()
+    videos += cur_videos
+    
+    for _ in range(recursions):
+        driver.play(cur_videos[0], 10)
+
+        cur_videos = driver.get_recommendations()
+        videos += cur_videos
+            
+    driver.close()
+
+    video_urls = [video.url for video in videos]
+    video_urls.insert(0, 'https://www.youtube.com') #Demark start of sessions
+    
+    list_to_csv(video_urls, filepath)
+    return video_urls
