@@ -1,4 +1,5 @@
 {
     "in_fpath": "data/temp/metadata.pq",
-    "out_fpath": "data/out/slant.pq"
+    "out_fpath": "data/out/slant.pq",
+    "model_preset": "glove-wiki-gigaword-100"
 }

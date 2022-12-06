@@ -3,8 +3,8 @@ from gensim.utils import tokenize
 import numpy as np
 import pandas as pd
 
-def find_slant(in_fpath, out_fpath):
-    word_vecs = gensim.downloader.load('glove-wiki-gigaword-100')
+def find_slant(in_fpath, out_fpath, model_preset):
+    word_vecs = gensim.downloader.load(model_preset)
     df = pd.read_parquet(in_fpath)
 
     reference = ['democrat', 'liberal', 'conservative', 'republican']
