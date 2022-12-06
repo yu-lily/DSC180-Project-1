@@ -19,16 +19,16 @@ def main(targets):
     `main` runs the targets in order of data=>analysis=>model.
     '''
 
-    # env_setup.make_datadir()
-    # env_setup.auth()
-
     if 'test' in targets:
         with open('config/test-params.json') as fh:
-            data_cfg = json.load(fh)
+            test_cfg = json.load(fh)
 
-        # make the data target
-        data = utils.get_data(data_cfg['start_filepath'])
+        #Many parts involving scraping and YouTube recommendations are difficult
+        #to test and can't be tested deterministically.
         
+        #This tests the main pipeline the scraped data runs through to determine
+        #the political slant of videos.
+        model.find_slant(**test_cfg)
         
     if 'scrape' in targets:
         with open('config/scrape-params.json') as fh:

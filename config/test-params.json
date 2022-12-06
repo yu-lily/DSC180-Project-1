@@ -1,3 +1,4 @@
 {
-    "start_filepath": "test/testdata/recs_test.csv"
+    "in_fpath": "test/testdata/metadata_test.pq",
+    "out_fpath": "test/testout/slant.pq"
 }
