@@ -11,6 +11,13 @@ def json_to_csv(data, filepath):
     else: # Only append if file already exists
         df.to_csv(filepath, mode='a', header=False, index=False)
         
+def json_to_parquet(data, filepath):
+    df = pd.DataFrame(data)
+    if not os.path.isfile(filepath): # If file doesn't exist yet
+        df.to_parquet(filepath, engine='fastparquet', index=False)
+    else: # Only append if file already exists
+        df.to_parquet(filepath, engine='fastparquet', append=True, index=False)
+        
 def list_to_csv(data, filepath):
     df = pd.DataFrame(data, columns=['url'])
     if not os.path.isfile(filepath): # If file doesn't exist yet

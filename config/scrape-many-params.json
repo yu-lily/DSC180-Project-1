@@ -1,4 +1,4 @@
 {
-    "filepath": "data/raw/recs2.csv",
+    "filepath": "data/raw/urls_only.csv",
     "recursions": 10
 }

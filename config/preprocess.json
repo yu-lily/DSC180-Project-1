@@ -1,0 +1,5 @@
+{
+    "in_fpath": "data/raw/urls_only.csv",
+    "out_fpath": "data/temp/metadata.pq",
+    "steps": 40
+}

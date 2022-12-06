@@ -8,7 +8,8 @@ sys.path.insert(0, 'src')
 
 import utils
 from scrape import scrape_video, scrape_ytdriver
-#from model import model
+import preprocess
+import model
 
 def main(targets):
     '''
@@ -26,8 +27,8 @@ def main(targets):
             data_cfg = json.load(fh)
 
         # make the data target
-        data = utils.get_data(**data_cfg)
-        print(data)
+        data = utils.get_data(data_cfg['start_filepath'])
+        
         
     if 'scrape' in targets:
         with open('config/scrape-params.json') as fh:
@@ -45,6 +46,16 @@ def main(targets):
             scrape_cfg = json.load(fh)
             
         data = scrape_ytdriver(**scrape_cfg)
+        
+    if 'preprocess' in targets:
+        with open('config/preprocess.json') as fh:
+            preproc_cfg = json.load(fh)
+        preprocess.preprocess(**preproc_cfg)
+        
+    if 'model' in targets:
+        with open('config/model.json') as fh:
+            model_cfg = json.load(fh)
+        model.find_slant(**model_cfg)
         
     return
 
