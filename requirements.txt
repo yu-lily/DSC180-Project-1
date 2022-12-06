@@ -65,7 +65,6 @@ python-dateutil==2.8.2
 python-dotenv==0.21.0
 pytweening==1.0.4
 pytz==2022.5
-pywin32==304
 pyzmq==24.0.1
 regex==2022.10.31
 requests==2.28.1
